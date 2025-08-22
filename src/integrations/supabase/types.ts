@@ -14,7 +14,114 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contacts: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          message: string
+          phone: string | null
+          service: string | null
+          status: string | null
+          updated_at: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email: string
+          first_name: string
+          id?: string
+          last_name: string
+          message: string
+          phone?: string | null
+          service?: string | null
+          status?: string | null
+          updated_at?: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          message?: string
+          phone?: string | null
+          service?: string | null
+          status?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      newsletter_subscriptions: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          source: string | null
+          status: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          source?: string | null
+          status?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          source?: string | null
+          status?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      testimonials: {
+        Row: {
+          client_company: string | null
+          client_name: string
+          client_title: string | null
+          created_at: string
+          featured: boolean | null
+          id: string
+          rating: number | null
+          status: string | null
+          testimonial_text: string
+          updated_at: string
+        }
+        Insert: {
+          client_company?: string | null
+          client_name: string
+          client_title?: string | null
+          created_at?: string
+          featured?: boolean | null
+          id?: string
+          rating?: number | null
+          status?: string | null
+          testimonial_text: string
+          updated_at?: string
+        }
+        Update: {
+          client_company?: string | null
+          client_name?: string
+          client_title?: string | null
+          created_at?: string
+          featured?: boolean | null
+          id?: string
+          rating?: number | null
+          status?: string | null
+          testimonial_text?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
