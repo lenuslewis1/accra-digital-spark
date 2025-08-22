@@ -13,8 +13,12 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import NewsletterSignup from "@/components/NewsletterSignup";
+import { useTestimonials } from "@/hooks/useTestimonials";
 
 const Index = () => {
+  const { testimonials, loading } = useTestimonials();
+  
   const services = [
     {
       icon: BarChart3,
@@ -35,24 +39,6 @@ const Index = () => {
       icon: Zap,
       title: "Brand Strategy",
       description: "Create a memorable brand that resonates with your audience."
-    }
-  ];
-
-  const testimonials = [
-    {
-      name: "Akosua Mensah",
-      company: "Mensah Enterprises",
-      text: "Mainstream Digital transformed our online presence. Sales increased by 300% in just 6 months!"
-    },
-    {
-      name: "Kwame Osei", 
-      company: "Osei Tech Solutions",
-      text: "Their expertise in the Ghanaian market is unmatched. Truly professional service."
-    },
-    {
-      name: "Ama Asante",
-      company: "Asante Fashion House", 
-      text: "Working with Mainstream Digital was the best decision for our business growth."
     }
   ];
 
@@ -102,6 +88,22 @@ const Index = () => {
               >
                 View Our Work
               </Button>
+            </motion.div>
+
+            {/* Newsletter Signup */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="max-w-md mx-auto mb-16"
+            >
+              <p className="text-white/80 mb-3">Subscribe for digital marketing insights</p>
+              <NewsletterSignup 
+                source="homepage_hero"
+                placeholder="Enter your email"
+                buttonText="Subscribe"
+                className="max-w-none"
+              />
             </motion.div>
 
             {/* Stats */}
@@ -258,28 +260,49 @@ const Index = () => {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="p-6 hover:shadow-elegant transition-smooth">
-                  <div className="flex mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-accent text-accent" />
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground mb-4">"{testimonial.text}"</p>
-                  <div>
-                    <div className="font-semibold">{testimonial.name}</div>
-                    <div className="text-sm text-muted-foreground">{testimonial.company}</div>
+            {loading ? (
+              // Loading skeleton
+              Array.from({ length: 3 }).map((_, index) => (
+                <Card key={index} className="p-6">
+                  <div className="animate-pulse">
+                    <div className="h-4 bg-muted rounded w-3/4 mb-4"></div>
+                    <div className="h-3 bg-muted rounded w-full mb-2"></div>
+                    <div className="h-3 bg-muted rounded w-5/6 mb-4"></div>
+                    <div className="h-3 bg-muted rounded w-1/2"></div>
                   </div>
                 </Card>
-              </motion.div>
-            ))}
+              ))
+            ) : (
+              testimonials.slice(0, 3).map((testimonial, index) => (
+                <motion.div
+                  key={testimonial.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="p-6 hover:shadow-elegant transition-smooth">
+                    {testimonial.rating && (
+                      <div className="flex mb-4">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} className="w-5 h-5 fill-accent text-accent" />
+                        ))}
+                      </div>
+                    )}
+                    <p className="text-muted-foreground mb-4">"{testimonial.testimonial_text}"</p>
+                    <div>
+                      <div className="font-semibold">{testimonial.client_name}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {testimonial.client_title && testimonial.client_company 
+                          ? `${testimonial.client_title}, ${testimonial.client_company}`
+                          : testimonial.client_title || testimonial.client_company || 'Valued Client'
+                        }
+                      </div>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))
+            )}
           </div>
         </div>
       </section>

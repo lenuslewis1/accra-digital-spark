@@ -1,12 +1,24 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { useContactForm, type ContactFormData } from "@/hooks/useContactForm";
 
 const Contact = () => {
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactFormData>();
+  const { submitContact, isSubmitting } = useContactForm();
+
+  const onSubmit = async (data: ContactFormData) => {
+    const result = await submitContact(data);
+    if (result.success) {
+      reset();
+    }
+  };
+
   const contactInfo = [
     {
       icon: Phone,
@@ -66,31 +78,67 @@ const Contact = () => {
                 <h2 className="text-3xl font-bold mb-6">
                   Send Us a <span className="gradient-text">Message</span>
                 </h2>
-                <form className="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" placeholder="Enter your first name" />
+                      <Label htmlFor="firstName">First Name *</Label>
+                      <Input 
+                        id="firstName" 
+                        placeholder="Enter your first name"
+                        {...register("firstName", { required: "First name is required" })}
+                      />
+                      {errors.firstName && (
+                        <p className="text-sm text-destructive mt-1">{errors.firstName.message}</p>
+                      )}
                     </div>
                     <div>
-                      <Label htmlFor="lastName">Last Name</Label>
-                      <Input id="lastName" placeholder="Enter your last name" />
+                      <Label htmlFor="lastName">Last Name *</Label>
+                      <Input 
+                        id="lastName" 
+                        placeholder="Enter your last name"
+                        {...register("lastName", { required: "Last name is required" })}
+                      />
+                      {errors.lastName && (
+                        <p className="text-sm text-destructive mt-1">{errors.lastName.message}</p>
+                      )}
                     </div>
                   </div>
                   
                   <div>
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input id="email" type="email" placeholder="Enter your email address" />
+                    <Label htmlFor="email">Email Address *</Label>
+                    <Input 
+                      id="email" 
+                      type="email" 
+                      placeholder="Enter your email address"
+                      {...register("email", { 
+                        required: "Email is required",
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                          message: "Invalid email address"
+                        }
+                      })}
+                    />
+                    {errors.email && (
+                      <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
+                    )}
                   </div>
                   
                   <div>
                     <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" placeholder="Enter your phone number" />
+                    <Input 
+                      id="phone" 
+                      placeholder="Enter your phone number"
+                      {...register("phone")}
+                    />
                   </div>
                   
                   <div>
                     <Label htmlFor="company">Company Name</Label>
-                    <Input id="company" placeholder="Enter your company name" />
+                    <Input 
+                      id="company" 
+                      placeholder="Enter your company name"
+                      {...register("company")}
+                    />
                   </div>
                   
                   <div>
@@ -98,6 +146,7 @@ const Contact = () => {
                     <select 
                       id="service"
                       className="w-full px-3 py-2 border border-input rounded-md bg-background"
+                      {...register("service")}
                     >
                       <option value="">Select a service</option>
                       <option value="seo">Search Engine Optimization</option>
@@ -112,16 +161,26 @@ const Contact = () => {
                   </div>
                   
                   <div>
-                    <Label htmlFor="message">Message</Label>
+                    <Label htmlFor="message">Message *</Label>
                     <Textarea 
                       id="message" 
                       placeholder="Tell us about your project and goals..." 
                       rows={5}
+                      {...register("message", { required: "Message is required" })}
                     />
+                    {errors.message && (
+                      <p className="text-sm text-destructive mt-1">{errors.message.message}</p>
+                    )}
                   </div>
                   
-                  <Button variant="hero" size="lg" className="w-full">
-                    Send Message
+                  <Button 
+                    type="submit" 
+                    variant="hero" 
+                    size="lg" 
+                    className="w-full"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </Card>
