@@ -17,7 +17,7 @@ import NewsletterSignup from "@/components/NewsletterSignup";
 import { useTestimonials } from "@/hooks/useTestimonials";
 
 const Index = () => {
-  const { testimonials, loading } = useTestimonials();
+  const { testimonials: clientTestimonials, loading } = useTestimonials();
   
   const services = [
     {
@@ -273,7 +273,7 @@ const Index = () => {
                 </Card>
               ))
             ) : (
-              testimonials.slice(0, 3).map((testimonial, index) => (
+              clientTestimonials.slice(0, 3).map((testimonial, index) => (
                 <motion.div
                   key={testimonial.id}
                   initial={{ opacity: 0, y: 30 }}
