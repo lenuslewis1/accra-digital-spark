@@ -2,62 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Mainstream Digital Design System - Modern Professional Theme
+/* Agencie-Inspired Design System - Clean & Modern
 All colors MUST be HSL for proper theming support.
 */
 
 @layer base {
   :root {
-    /* Base colors - Clean and professional */
+    /* Base colors - Ultra clean white background */
     --background: 0 0% 100%;
-    --foreground: 215 20% 15%;
+    --foreground: 0 0% 9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 20% 15%;
+    --card-foreground: 0 0% 9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 20% 15%;
+    --popover-foreground: 0 0% 9%;
 
-    /* Primary - Modern Blue for trust and technology */
-    --primary: 210 100% 40%;
+    /* Primary - Deep black for strong contrast */
+    --primary: 0 0% 9%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 210 100% 50%;
 
-    /* Secondary - Vibrant Teal for innovation */
-    --secondary: 185 100% 35%;
-    --secondary-foreground: 0 0% 100%;
+    /* Secondary - Light gray for subtle elements */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
 
-    /* Accent - Energetic Orange for call-to-actions */
-    --accent: 25 100% 55%;
+    /* Accent - Bright orange like Agencie's lightning bolt */
+    --accent: 32 100% 50%;
     --accent-foreground: 0 0% 100%;
 
     /* Supporting colors */
-    --muted: 215 15% 95%;
-    --muted-foreground: 215 12% 45%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 15% 90%;
-    --input: 215 15% 90%;
-    --ring: 210 100% 40%;
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 32 100% 50%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    /* Design System Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(210 100% 40%), hsl(185 100% 35%));
-    --gradient-hero: linear-gradient(135deg, hsl(210 100% 40%), hsl(185 100% 35%), hsl(25 100% 55%));
-    --gradient-accent: linear-gradient(45deg, hsl(25 100% 55%), hsl(35 100% 60%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(215 15% 98%));
-
-    /* Shadows with brand colors */
-    --shadow-primary: 0 10px 30px -10px hsl(210 100% 40% / 0.3);
-    --shadow-accent: 0 10px 30px -10px hsl(25 100% 55% / 0.3);
-    --shadow-elegant: 0 20px 50px -20px hsl(215 20% 15% / 0.15);
+    /* Simple, clean shadows */
+    --shadow-subtle: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1);
 
     /* Animation variables */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-smooth: all 0.15s ease;
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -77,45 +70,38 @@ All colors MUST be HSL for proper theming support.
   }
 
   .dark {
-    /* Dark mode - Professional dark theme */
-    --background: 215 25% 8%;
-    --foreground: 215 15% 95%;
+    /* Dark mode - Keep it simple */
+    --background: 0 0% 9%;
+    --foreground: 0 0% 98%;
 
-    --card: 215 20% 10%;
-    --card-foreground: 215 15% 95%;
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 215 20% 10%;
-    --popover-foreground: 215 15% 95%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 210 100% 50%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 210 100% 60%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
 
-    --secondary: 185 100% 45%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 98%;
 
-    --accent: 25 100% 65%;
+    --accent: 32 100% 50%;
     --accent-foreground: 0 0% 100%;
 
-    --muted: 215 15% 15%;
-    --muted-foreground: 215 12% 65%;
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 63%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 15% 20%;
-    --input: 215 15% 20%;
-    --ring: 210 100% 50%;
+    --border: 0 0% 14%;
+    --input: 0 0% 14%;
+    --ring: 32 100% 50%;
 
-    /* Dark mode gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(210 100% 50%), hsl(185 100% 45%));
-    --gradient-hero: linear-gradient(135deg, hsl(210 100% 50%), hsl(185 100% 45%), hsl(25 100% 65%));
-    --gradient-accent: linear-gradient(45deg, hsl(25 100% 65%), hsl(35 100% 70%));
-    --gradient-subtle: linear-gradient(180deg, hsl(215 25% 8%), hsl(215 20% 10%));
-
-    --shadow-primary: 0 10px 30px -10px hsl(210 100% 50% / 0.4);
-    --shadow-accent: 0 10px 30px -10px hsl(25 100% 65% / 0.4);
-    --shadow-elegant: 0 20px 50px -20px hsl(0 0% 0% / 0.3);
+    --shadow-subtle: 0 1px 3px 0 hsl(0 0% 0% / 0.2), 0 1px 2px -1px hsl(0 0% 0% / 0.2);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.2), 0 2px 4px -2px hsl(0 0% 0% / 0.2);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.2), 0 4px 6px -4px hsl(0 0% 0% / 0.2);
   }
 }
 
@@ -135,35 +121,20 @@ All colors MUST be HSL for proper theming support.
   }
 
   /* Custom utilities */
-  .gradient-text {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .accent-text {
+    color: hsl(var(--accent));
   }
 
-  .gradient-hero {
-    background: var(--gradient-hero);
+  .shadow-subtle {
+    box-shadow: var(--shadow-subtle);
   }
 
-  .gradient-accent {
-    background: var(--gradient-accent);
+  .shadow-md {
+    box-shadow: var(--shadow-md);
   }
 
-  .gradient-subtle {
-    background: var(--gradient-subtle);
-  }
-
-  .shadow-primary {
-    box-shadow: var(--shadow-primary);
-  }
-
-  .shadow-accent {
-    box-shadow: var(--shadow-accent);
-  }
-
-  .shadow-elegant {
-    box-shadow: var(--shadow-elegant);
+  .shadow-lg {
+    box-shadow: var(--shadow-lg);
   }
 
   .transition-smooth {
@@ -172,5 +143,40 @@ All colors MUST be HSL for proper theming support.
 
   .transition-bounce {
     transition: var(--transition-bounce);
+  }
+
+  /* Agencie-style typography */
+  .display-xl {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .display-lg {
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 768px) {
+    .display-xl {
+      font-size: 4.5rem;
+    }
+    
+    .display-lg {
+      font-size: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .display-xl {
+      font-size: 5.5rem;
+    }
+    
+    .display-lg {
+      font-size: 3.5rem;
+    }
   }
 }

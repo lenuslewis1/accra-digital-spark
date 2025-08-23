@@ -9,7 +9,11 @@ import {
   Star,
   Zap,
   Target,
-  BarChart3
+  BarChart3,
+  Lightbulb,
+  Clock,
+  Shield,
+  Rocket
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -43,31 +47,58 @@ const Index = () => {
   ];
 
   const stats = [
-    { number: "150+", label: "Projects Delivered" },
-    { number: "98%", label: "Client Satisfaction" },
-    { number: "5x", label: "Average ROI Increase" },
-    { number: "24/7", label: "Support Available" }
+    { number: "250", label: "Projects Delivered", description: "We've successfully completed over 250 projects—and we're just getting started!" },
+    { number: "70", label: "Business Growth", description: "Our strategies have helped clients achieve up to 70% revenue growth in just one year!", suffix: "%" },
+    { number: "500", label: "Happy Clients", description: "More than 500 satisfied clients trust us to bring their ideas to life.", suffix: "+" }
+  ];
+
+  const benefits = [
+    {
+      icon: Rocket,
+      title: "Lead Generation on Autopilot",
+      description: "We take care of generating leads while you focus on doing what you love—running your business!"
+    },
+    {
+      icon: Clock,
+      title: "24/7 Brand Visibility", 
+      description: "Your brand stays visible 24/7 with our automated marketing strategies."
+    },
+    {
+      icon: Target,
+      title: "Tailored Solutions",
+      description: "Every solution is tailored to fit your unique business needs—no cookie-cutter strategies here!"
+    },
+    {
+      icon: Shield,
+      title: "Big Agency Results",
+      description: "Get big agency results without breaking the bank."
+    },
+    {
+      icon: Lightbulb,
+      title: "Creative Innovation",
+      description: "Our team comes up with out-of-the-box ideas to make your brand stand out."
+    }
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="gradient-hero pt-20 pb-32 relative overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-6xl mx-auto text-center">
+      <section className="pt-20 pb-20 relative">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="mb-8"
+              className="mb-12"
             >
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-                Transform Your
-                <br />
-                <span className="text-white/90">Digital Presence</span>
+              <h1 className="display-xl text-foreground mb-6">
+                Big ideas, smart strategies,<br />
+                and endless creativity to<br />
+                supercharge <span className="accent-text">⚡</span> your brand!
               </h1>
-              <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto">
-                We help Ghanaian businesses thrive online with cutting-edge digital marketing, web development, and brand strategies that drive real results.
+              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+                Your go-to agency for designs that inspire and strategies that deliver. We turn ideas into lasting impressions.
               </p>
             </motion.div>
             
@@ -75,67 +106,55 @@ const Index = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+              className="mb-8"
             >
-              <Button variant="hero" size="lg" className="group">
+              <Button variant="hero" size="lg">
                 Get Started Today
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-smooth" />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="text-white border-white hover:bg-white hover:text-primary"
-              >
-                View Our Work
+                <ArrowRight className="ml-2" />
               </Button>
             </motion.div>
 
-            {/* Newsletter Signup */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="max-w-md mx-auto mb-16"
+              className="flex items-center justify-center gap-2 mb-16"
             >
-              <p className="text-white/80 mb-3">Subscribe for digital marketing insights</p>
-              <NewsletterSignup 
-                source="homepage_hero"
-                placeholder="Enter your email"
-                buttonText="Subscribe"
-                className="max-w-none"
-              />
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-accent text-accent" />
+                ))}
+              </div>
+              <span className="text-sm text-muted-foreground">Over 200+ Five Star Reviews</span>
             </motion.div>
 
-            {/* Stats */}
+            {/* Stats Section */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
+              className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
             >
               {stats.map((stat, index) => (
                 <div key={stat.label} className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">
-                    {stat.number}
+                  <div className="text-5xl md:text-6xl font-bold text-foreground mb-2">
+                    {stat.number}<span className="accent-text">{stat.suffix || "+"}</span>
                   </div>
-                  <div className="text-white/70 text-sm">
+                  <div className="text-lg font-semibold text-foreground mb-2">
                     {stat.label}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {stat.description}
                   </div>
                 </div>
               ))}
             </motion.div>
           </div>
         </div>
-        
-        {/* Background decoration */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
-        </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20 bg-gradient-subtle">
+      {/* Benefits Section */}
+      <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -144,8 +163,44 @@ const Index = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Our <span className="gradient-text">Services</span>
+            <h2 className="display-lg text-foreground mb-6">
+              See why partnering with us is the smartest move.
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={benefit.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="text-left"
+              >
+                <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mb-4">
+                  <benefit.icon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground mb-2">{benefit.title}</h3>
+                <p className="text-muted-foreground">{benefit.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="display-lg text-foreground mb-6">
+              Our <span className="accent-text">Services</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Comprehensive digital solutions designed to help your business succeed in Ghana's evolving digital landscape.
@@ -161,11 +216,11 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="p-6 text-center hover:shadow-elegant transition-smooth group">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-smooth">
+                <Card className="p-6 text-center hover:shadow-lg transition-smooth group border-border">
+                  <div className="w-16 h-16 bg-accent rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-smooth">
                     <service.icon className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
+                  <h3 className="text-xl font-semibold mb-3 text-foreground">{service.title}</h3>
                   <p className="text-muted-foreground">{service.description}</p>
                 </Card>
               </motion.div>
@@ -180,7 +235,7 @@ const Index = () => {
             className="text-center mt-12"
           >
             <Link to="/services">
-              <Button variant="hero">
+              <Button variant="hero" size="lg">
                 View All Services
                 <ArrowRight className="ml-2" />
               </Button>
@@ -189,60 +244,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About Preview Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Your Trusted <span className="gradient-text">Digital Partner</span> in Ghana
-              </h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                Since 2016, we've been helping Ghanaian businesses establish powerful online presences and achieve sustainable growth through strategic digital solutions.
-              </p>
-              <div className="space-y-4 mb-8">
-                {[
-                  "8+ years of digital marketing experience",
-                  "100+ successful projects delivered", 
-                  "Local market expertise with global standards",
-                  "Dedicated support throughout your journey"
-                ].map((point) => (
-                  <div key={point} className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-primary mr-3" />
-                    <span>{point}</span>
-                  </div>
-                ))}
-              </div>
-              <Link to="/about">
-                <Button variant="hero">
-                  Learn More About Us
-                  <ArrowRight className="ml-2" />
-                </Button>
-              </Link>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="aspect-square bg-gradient-primary rounded-2xl shadow-elegant relative overflow-hidden">
-                <div className="absolute inset-0 bg-white/10"></div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials Section */}
-      <section className="py-20 bg-gradient-subtle">
+      <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -251,8 +254,8 @@ const Index = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              What Our <span className="gradient-text">Clients Say</span>
+            <h2 className="display-lg text-foreground mb-6">
+              What Our <span className="accent-text">Clients Say</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Don't just take our word for it. Here's what some of our amazing clients have to say about working with us.
@@ -263,7 +266,7 @@ const Index = () => {
             {loading ? (
               // Loading skeleton
               Array.from({ length: 3 }).map((_, index) => (
-                <Card key={index} className="p-6">
+                <Card key={index} className="p-6 border-border">
                   <div className="animate-pulse">
                     <div className="h-4 bg-muted rounded w-3/4 mb-4"></div>
                     <div className="h-3 bg-muted rounded w-full mb-2"></div>
@@ -281,7 +284,7 @@ const Index = () => {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="p-6 hover:shadow-elegant transition-smooth">
+                  <Card className="p-6 hover:shadow-lg transition-smooth border-border">
                     {testimonial.rating && (
                       <div className="flex mb-4">
                         {[...Array(testimonial.rating)].map((_, i) => (
@@ -291,7 +294,7 @@ const Index = () => {
                     )}
                     <p className="text-muted-foreground mb-4">"{testimonial.testimonial_text}"</p>
                     <div>
-                      <div className="font-semibold">{testimonial.client_name}</div>
+                      <div className="font-semibold text-foreground">{testimonial.client_name}</div>
                       <div className="text-sm text-muted-foreground">
                         {testimonial.client_title && testimonial.client_company 
                           ? `${testimonial.client_title}, ${testimonial.client_company}`
@@ -317,8 +320,8 @@ const Index = () => {
             viewport={{ once: true }}
             className="max-w-4xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Grow Your <span className="gradient-text">Business</span>?
+            <h2 className="display-lg text-foreground mb-6">
+              Ready to Grow Your <span className="accent-text">Business</span>?
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
               Let's work together to create a digital presence that drives real results for your business. Get started with a free consultation today.
