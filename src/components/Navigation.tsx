@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
+  { href: "/", label: "Features" },
+  { href: "/about", label: "Benefits" },
+  { href: "/services", label: "Pricing" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -16,43 +16,49 @@ export const Navigation = () => {
   const location = useLocation();
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4">
+      <div className="bg-card/80 backdrop-blur-xl border border-border/50 rounded-3xl shadow-2xl">
+        <div className="flex items-center justify-between h-16 px-6">
           {/* Logo */}
           <Link 
             to="/" 
-            className="font-bold text-xl gradient-text transition-smooth hover:scale-105"
+            className="flex items-center gap-2 font-bold text-xl text-foreground transition-all duration-300 hover:scale-105"
           >
-            Mainstream Digital
+            <div className="w-8 h-8 bg-gradient-to-br from-accent to-purple-600 rounded-xl flex items-center justify-center">
+              <Sparkles className="w-5 h-5 text-white" />
+            </div>
+            Neura
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 to={item.href}
-                className={`text-sm font-medium transition-smooth hover:text-primary ${
+                className={`px-4 py-2 rounded-2xl text-sm font-medium transition-all duration-300 hover:bg-secondary/50 ${
                   location.pathname === item.href 
-                    ? "text-primary" 
-                    : "text-muted-foreground"
+                    ? "text-primary bg-secondary" 
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {item.label}
               </Link>
             ))}
-            <Button variant="hero" size="sm">
-              Get Started
+          </div>
+
+          <div className="hidden md:flex items-center space-x-3">
+            <Button variant="ghost" size="sm" className="rounded-2xl">
+              Purchase
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-muted transition-smooth"
+            className="md:hidden p-2 rounded-2xl hover:bg-secondary/50 transition-all duration-300"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 
@@ -63,26 +69,26 @@ export const Navigation = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden border-t border-border"
+              className="md:hidden border-t border-border/30 rounded-b-3xl overflow-hidden"
             >
-              <div className="py-4 space-y-4">
+              <div className="p-6 space-y-3">
                 {navItems.map((item) => (
                   <Link
                     key={item.href}
                     to={item.href}
-                    className={`block px-4 py-2 text-sm font-medium transition-smooth hover:text-primary ${
+                    className={`block px-4 py-3 text-sm font-medium rounded-2xl transition-all duration-300 hover:bg-secondary/50 ${
                       location.pathname === item.href 
-                        ? "text-primary bg-muted rounded-lg" 
-                        : "text-muted-foreground"
+                        ? "text-primary bg-secondary" 
+                        : "text-muted-foreground hover:text-foreground"
                     }`}
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}
                   </Link>
                 ))}
-                <div className="px-4">
-                  <Button variant="hero" size="sm" className="w-full">
-                    Get Started
+                <div className="pt-3">
+                  <Button variant="hero" size="sm" className="w-full rounded-2xl">
+                    Purchase
                   </Button>
                 </div>
               </div>

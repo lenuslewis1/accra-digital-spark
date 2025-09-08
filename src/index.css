@@ -2,55 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Agencie-Inspired Design System - Clean & Modern
+/* Neura-Inspired Design System - Modern AI Aesthetic
 All colors MUST be HSL for proper theming support.
 */
 
 @layer base {
   :root {
-    /* Base colors - Ultra clean white background */
-    --background: 0 0% 100%;
-    --foreground: 0 0% 9%;
+    /* Base colors - Light lavender gradient background */
+    --background: 249 50% 95%;
+    --foreground: 220 13% 18%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 9%;
+    --card-foreground: 220 13% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 9%;
+    --popover-foreground: 220 13% 18%;
 
-    /* Primary - Deep black for strong contrast */
-    --primary: 0 0% 9%;
+    /* Primary - Modern dark purple/blue */
+    --primary: 220 13% 18%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary - Light gray for subtle elements */
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 9%;
+    /* Secondary - Soft purple tint */
+    --secondary: 249 35% 92%;
+    --secondary-foreground: 220 13% 18%;
 
-    /* Accent - Bright orange like Agencie's lightning bolt */
-    --accent: 32 100% 50%;
+    /* Accent - Vibrant purple gradient */
+    --accent: 260 60% 65%;
     --accent-foreground: 0 0% 100%;
 
     /* Supporting colors */
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 249 25% 88%;
+    --muted-foreground: 220 9% 46%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 89%;
-    --input: 0 0% 89%;
-    --ring: 32 100% 50%;
+    --border: 249 20% 85%;
+    --input: 0 0% 100%;
+    --ring: 260 60% 65%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
-    /* Simple, clean shadows */
-    --shadow-subtle: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1);
-    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1);
+    /* Neura-style gradients */
+    --gradient-purple: linear-gradient(135deg, hsl(260 60% 65%) 0%, hsl(280 70% 75%) 100%);
+    --gradient-green: linear-gradient(135deg, hsl(140 60% 70%) 0%, hsl(160 70% 60%) 100%);
+    --gradient-orange: linear-gradient(135deg, hsl(25 95% 70%) 0%, hsl(35 95% 60%) 100%);
+    --gradient-bg: linear-gradient(135deg, hsl(249 50% 95%) 0%, hsl(255 45% 92%) 100%);
 
-    /* Animation variables */
-    --transition-smooth: all 0.15s ease;
-    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* Modern shadows with purple tint */
+    --shadow-subtle: 0 1px 3px 0 hsl(260 60% 65% / 0.1), 0 1px 2px -1px hsl(260 60% 65% / 0.1);
+    --shadow-md: 0 4px 12px -1px hsl(260 60% 65% / 0.15), 0 2px 4px -2px hsl(260 60% 65% / 0.1);
+    --shadow-lg: 0 20px 25px -3px hsl(260 60% 65% / 0.15), 0 8px 10px -4px hsl(260 60% 65% / 0.1);
+
+    /* Smooth animations */
+    --transition-smooth: all 0.3s ease;
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -70,38 +76,40 @@ All colors MUST be HSL for proper theming support.
   }
 
   .dark {
-    /* Dark mode - Keep it simple */
-    --background: 0 0% 9%;
-    --foreground: 0 0% 98%;
+    /* Dark mode - Modern dark with purple accents */
+    --background: 220 20% 8%;
+    --foreground: 249 30% 95%;
 
-    --card: 0 0% 9%;
-    --card-foreground: 0 0% 98%;
+    --card: 220 15% 12%;
+    --card-foreground: 249 30% 95%;
 
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 220 15% 12%;
+    --popover-foreground: 249 30% 95%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
+    --primary: 249 30% 95%;
+    --primary-foreground: 220 20% 8%;
 
-    --secondary: 0 0% 14%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 249 30% 95%;
 
-    --accent: 32 100% 50%;
+    --accent: 260 60% 65%;
     --accent-foreground: 0 0% 100%;
 
-    --muted: 0 0% 14%;
-    --muted-foreground: 0 0% 63%;
+    --muted: 220 15% 15%;
+    --muted-foreground: 249 15% 63%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 14%;
-    --input: 0 0% 14%;
-    --ring: 32 100% 50%;
+    --border: 220 15% 15%;
+    --input: 220 15% 15%;
+    --ring: 260 60% 65%;
 
-    --shadow-subtle: 0 1px 3px 0 hsl(0 0% 0% / 0.2), 0 1px 2px -1px hsl(0 0% 0% / 0.2);
-    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.2), 0 2px 4px -2px hsl(0 0% 0% / 0.2);
-    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.2), 0 4px 6px -4px hsl(0 0% 0% / 0.2);
+    --gradient-bg: linear-gradient(135deg, hsl(220 20% 8%) 0%, hsl(225 25% 12%) 100%);
+
+    --shadow-subtle: 0 1px 3px 0 hsl(260 60% 65% / 0.2), 0 1px 2px -1px hsl(260 60% 65% / 0.2);
+    --shadow-md: 0 4px 12px -1px hsl(260 60% 65% / 0.25), 0 2px 4px -2px hsl(260 60% 65% / 0.2);
+    --shadow-lg: 0 20px 25px -3px hsl(260 60% 65% / 0.25), 0 8px 10px -4px hsl(260 60% 65% / 0.2);
   }
 }
 
@@ -111,8 +119,10 @@ All colors MUST be HSL for proper theming support.
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply text-foreground font-sans;
+    background: var(--gradient-bg);
     font-feature-settings: "rlig" 1, "calt" 1;
+    min-height: 100vh;
   }
 
   /* Smooth scrolling */
@@ -145,38 +155,75 @@ All colors MUST be HSL for proper theming support.
     transition: var(--transition-bounce);
   }
 
-  /* Agencie-style typography */
+  /* Neura-style typography - Ultra modern and bold */
   .display-xl {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
   }
 
   .display-lg {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.15;
     letter-spacing: -0.02em;
+  }
+
+  .display-md {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
   }
 
   @media (min-width: 768px) {
     .display-xl {
-      font-size: 4.5rem;
-    }
-    
-    .display-lg {
-      font-size: 3rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .display-xl {
-      font-size: 5.5rem;
+      font-size: 5rem;
     }
     
     .display-lg {
       font-size: 3.5rem;
     }
+
+    .display-md {
+      font-size: 2.75rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .display-xl {
+      font-size: 6.5rem;
+    }
+    
+    .display-lg {
+      font-size: 4.5rem;
+    }
+
+    .display-md {
+      font-size: 3.25rem;
+    }
+  }
+
+  /* Gradient text utilities */
+  .text-gradient-purple {
+    background: var(--gradient-purple);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-green {
+    background: var(--gradient-green);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-orange {
+    background: var(--gradient-orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
