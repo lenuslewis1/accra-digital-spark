@@ -83,6 +83,69 @@ export type Database = {
         }
         Relationships: []
       }
+      service_requests: {
+        Row: {
+          budget_range: string | null
+          company: string | null
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          internal_notes: string | null
+          last_name: string
+          phone: string | null
+          preferred_contact_method: string | null
+          priority: string | null
+          project_description: string
+          project_title: string
+          service_type: string
+          source: string | null
+          status: string | null
+          timeline: string | null
+          updated_at: string
+        }
+        Insert: {
+          budget_range?: string | null
+          company?: string | null
+          created_at?: string
+          email: string
+          first_name: string
+          id?: string
+          internal_notes?: string | null
+          last_name: string
+          phone?: string | null
+          preferred_contact_method?: string | null
+          priority?: string | null
+          project_description: string
+          project_title: string
+          service_type: string
+          source?: string | null
+          status?: string | null
+          timeline?: string | null
+          updated_at?: string
+        }
+        Update: {
+          budget_range?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          internal_notes?: string | null
+          last_name?: string
+          phone?: string | null
+          preferred_contact_method?: string | null
+          priority?: string | null
+          project_description?: string
+          project_title?: string
+          service_type?: string
+          source?: string | null
+          status?: string | null
+          timeline?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       testimonials: {
         Row: {
           client_company: string | null
