@@ -226,4 +226,22 @@ All colors MUST be HSL for proper theming support.
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  /* Infinite scroll animation */
+  @keyframes scroll-infinite {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll-infinite {
+    animation: scroll-infinite 20s linear infinite;
+  }
+
+  .animate-scroll-infinite:hover {
+    animation-play-state: paused;
+  }
 }

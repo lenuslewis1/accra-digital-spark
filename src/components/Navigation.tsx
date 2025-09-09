@@ -5,9 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
-  { href: "/", label: "Features" },
-  { href: "/about", label: "Benefits" },
-  { href: "/services", label: "Pricing" },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/case-studies", label: "Case Studies" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -27,7 +28,7 @@ export const Navigation = () => {
             <div className="w-8 h-8 bg-gradient-to-br from-accent to-purple-600 rounded-xl flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
-            Neura
+            Mainstream Digital
           </Link>
 
           {/* Desktop Navigation */}
@@ -48,8 +49,10 @@ export const Navigation = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-3">
-            <Button variant="ghost" size="sm" className="rounded-2xl">
-              Purchase
+            <Button variant="ghost" size="sm" className="rounded-2xl" asChild>
+              <Link to="/contact">
+                Get Quote
+              </Link>
             </Button>
           </div>
 
@@ -87,8 +90,10 @@ export const Navigation = () => {
                   </Link>
                 ))}
                 <div className="pt-3">
-                  <Button variant="hero" size="sm" className="w-full rounded-2xl">
-                    Purchase
+                  <Button variant="hero" size="sm" className="w-full rounded-2xl" asChild>
+                    <Link to="/contact">
+                      Get Quote
+                    </Link>
                   </Button>
                 </div>
               </div>
