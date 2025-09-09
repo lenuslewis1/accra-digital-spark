@@ -12,6 +12,7 @@ import Contact from "./pages/Contact";
 import RequestService from "./pages/RequestService";
 import CaseStudies from "./pages/CaseStudies";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
+import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
               <Route path="/request-service" element={<RequestService />} />
               <Route path="/case-studies" element={<CaseStudies />} />
               <Route path="/case-studies/:id" element={<CaseStudyDetail />} />
+              <Route path="/blog" element={<Blog />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
