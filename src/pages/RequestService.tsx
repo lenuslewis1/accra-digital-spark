@@ -19,19 +19,22 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { useServiceRequest } from "@/hooks/useServiceRequest";
 
 const RequestService = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { submitServiceRequest, isSubmitting } = useServiceRequest();
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     company: "",
     service: "",
     budget: "",
     timeline: "",
+    projectTitle: "",
     message: ""
   });
 
@@ -76,42 +79,39 @@ const RequestService = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      toast({
-        title: "Service Request Submitted!",
-        description: "We'll get back to you within 24 hours to discuss your project.",
-      });
-      
+    
+    const result = await submitServiceRequest({
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      phone: formData.phone,
+      company: formData.company,
+      serviceType: formData.service,
+      projectTitle: formData.projectTitle,
+      projectDescription: formData.message,
+      budgetRange: formData.budget,
+      timeline: formData.timeline,
+    });
+    
+    if (result.success) {
       // Reset form
       setFormData({
-        name: "",
+        firstName: "",
+        lastName: "",
         email: "",
         phone: "",
         company: "",
         service: "",
         budget: "",
         timeline: "",
+        projectTitle: "",
         message: ""
       });
       
-      // Redirect to thank you page or home
+      // Redirect to home
       setTimeout(() => {
         navigate("/");
       }, 2000);
-      
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -149,18 +149,30 @@ const RequestService = () => {
                     Contact Information
                   </h2>
                   
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Full Name *</Label>
-                      <Input
-                        id="name"
-                        value={formData.name}
-                        onChange={(e) => handleInputChange("name", e.target.value)}
-                        placeholder="Your full name"
-                        required
-                        className="h-12"
-                      />
-                    </div>
+                   <div className="grid md:grid-cols-2 gap-6">
+                     <div className="space-y-2">
+                       <Label htmlFor="firstName">First Name *</Label>
+                       <Input
+                         id="firstName"
+                         value={formData.firstName}
+                         onChange={(e) => handleInputChange("firstName", e.target.value)}
+                         placeholder="Your first name"
+                         required
+                         className="h-12"
+                       />
+                     </div>
+                     
+                     <div className="space-y-2">
+                       <Label htmlFor="lastName">Last Name *</Label>
+                       <Input
+                         id="lastName"
+                         value={formData.lastName}
+                         onChange={(e) => handleInputChange("lastName", e.target.value)}
+                         placeholder="Your last name"
+                         required
+                         className="h-12"
+                       />
+                     </div>
                     
                     <div className="space-y-2">
                       <Label htmlFor="email">Email Address *</Label>
@@ -207,22 +219,36 @@ const RequestService = () => {
                     Project Details
                   </h2>
                   
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="service">Service Needed *</Label>
-                      <Select value={formData.service} onValueChange={(value) => handleInputChange("service", value)}>
-                        <SelectTrigger className="h-12">
-                          <SelectValue placeholder="Select a service" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {services.map((service) => (
-                            <SelectItem key={service} value={service}>
-                              {service}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
+                   <div className="space-y-6">
+                     <div className="space-y-2">
+                       <Label htmlFor="projectTitle">Project Title *</Label>
+                       <Input
+                         id="projectTitle"
+                         value={formData.projectTitle}
+                         onChange={(e) => handleInputChange("projectTitle", e.target.value)}
+                         placeholder="Brief title for your project"
+                         required
+                         className="h-12"
+                       />
+                     </div>
+                   </div>
+                   
+                   <div className="grid md:grid-cols-2 gap-6">
+                     <div className="space-y-2">
+                       <Label htmlFor="service">Service Needed *</Label>
+                       <Select value={formData.service} onValueChange={(value) => handleInputChange("service", value)}>
+                         <SelectTrigger className="h-12">
+                           <SelectValue placeholder="Select a service" />
+                         </SelectTrigger>
+                         <SelectContent>
+                           {services.map((service) => (
+                             <SelectItem key={service} value={service}>
+                               {service}
+                             </SelectItem>
+                           ))}
+                         </SelectContent>
+                       </Select>
+                     </div>
                     
                     <div className="space-y-2">
                       <Label htmlFor="budget">Project Budget</Label>
